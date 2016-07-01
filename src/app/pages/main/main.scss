@@ -1,0 +1,65 @@
+.main {
+    text-align: center;
+    .background-vid {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -100;
+        background-size: cover;
+    }
+
+    .login-form {
+        margin: 10% auto;
+        width: 30%;;
+        padding: 30px;
+        background: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        color: #FFF;
+
+        .logo {
+            margin-bottom: 2%;
+            border-top: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            p {
+                font-size: 2.5em;
+            }
+        }
+
+        .login-message {
+            font-size: 1.3em;
+            color: #fff;
+            font-weight: 200;
+            margin-top: 2.5ex;
+            line-height: 3ex;
+        }
+
+        .login-button {
+            margin-top: 2.5ex;
+            width: 100%;
+            background-color: cornflowerblue;
+            height: 3em;
+            .fb-logo {
+                background-color: #3b5998;
+                float: left;
+                height: 100%;
+                width: 20%;
+                i {
+                    margin-top: 15%;
+                    font-size: 2em;
+                }
+            }
+            .login-button-text {
+                margin-top: 40px;
+                span {
+                    font-size: 2em;
+                    font-weight: 300;
+                    margin-left: -10px;
+                }
+            }
+        }
+
+    }
+
+}

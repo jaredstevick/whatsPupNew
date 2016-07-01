@@ -15,6 +15,7 @@ const App = angular.module(
 	"ngSanitize", 
 	"ngMessages", 
 	"ngAria",
+  "firebase",
 
     // core
     require("./core/core.module").name,
@@ -26,7 +27,9 @@ const App = angular.module(
     require("./index.routes").name,
 
     // pages
-    require("./pages/main/main.module").name
+    require("./pages/main/main.module").name,
+    require("./pages/clients/clients.module").name
+
 
   ]
 );

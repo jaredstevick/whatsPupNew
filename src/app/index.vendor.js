@@ -20,6 +20,8 @@ import "angular-messages";
 
 import "angular-aria";
 
+import "angularfire";
+
 
 
 // local scripts

@@ -1,7 +1,26 @@
-<div class="jumbotron">
-    <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a simple angular webpack es6 example, compatible with lazy-loading modules.</p>
-        
+<div class="main">
+    <div class="video-container">
+            <div class="mask"></div>
+            <video autoplay loop poster="" class="background-vid">
+                <source src="http://res.cloudinary.com/jaredstevick/raw/upload/v1427133847/ncmnv3oglnmt0xlv81g9.mp4" type="video/mp4">
+            </video>
+    </div>
+
+    <div class="title-container">
+        <div class="login-form" ng-submit="client.addClient(app.newClient)">
+
+            <div class="logo">
+                <p><i class="fa fa-paw"></i> whatsPup</p>
+            </div>
+
+            <p class="login-message">A web application for Pet Sitters to provide real-time updates to their clients.</p>
+            <p class="login-message">Login with Facebook</p>
+
+            <div ng-click="main.login()" class="login-button">
+                <div class="fb-logo"><i class="fa fa-facebook"></i></div>
+                <div class="login-button-text"><span>Login</span></div>
+            </div>
+
+        </div>
     </div>
 </div>
