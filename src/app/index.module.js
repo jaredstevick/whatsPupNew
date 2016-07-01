@@ -15,7 +15,6 @@ const App = angular.module(
 	"ngSanitize", 
 	"ngMessages", 
 	"ngAria",
-  "firebase",
 
     // core
     require("./core/core.module").name,

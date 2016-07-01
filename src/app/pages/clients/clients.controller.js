@@ -1,12 +1,18 @@
 class ClientsController {
     /* @ngInject */
-    constructor() {
+    constructor(AuthService) {
+        this.AuthService = AuthService;
         this.init();
     }
 
     init() {
-        console.log('hello from clients init');
+        // this.AuthService.getUser();
     }
+
+    logout() {
+        this.AuthService.logout();
+    }
+
 }
 
 export default ClientsController;

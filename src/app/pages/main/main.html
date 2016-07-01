@@ -7,18 +7,43 @@
     </div>
 
     <div class="title-container">
-        <div class="login-form" ng-submit="client.addClient(app.newClient)">
+        <div class="login-form">
 
             <div class="logo">
                 <p><i class="fa fa-paw"></i> whatsPup</p>
             </div>
 
             <p class="login-message">A web application for Pet Sitters to provide real-time updates to their clients.</p>
-            <p class="login-message">Login with Facebook</p>
 
-            <div ng-click="main.login()" class="login-button">
-                <div class="fb-logo"><i class="fa fa-facebook"></i></div>
-                <div class="login-button-text"><span>Login</span></div>
+            <h5 ng-click="showRegistration = !showRegistration">Create an Account</h5>
+            <div class="register" ng-show="showRegistration">
+                <p class="login-message">Create a new Account with your email address</p>
+                <form name="emailCreateAccountForm">
+                    <input ng-model="mainCtrl.user.newEmail" type="text"/>
+                    <input ng-model="mainCtrl.user.newPassword" type="password"/>
+                    <div ng-click="mainCtrl.emailLogin()" class="email-login-button">
+                        <div class="email-logo"><i class="fa fa-envelope"></i></div>
+                        <div class="login-button-text"><span>Create Account</span></div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="existing-login" ng-show="!showRegistration">
+                <p class="login-message">Login with Facebook</p>
+                <div ng-click="mainCtrl.fbLogin()" class="fb-login-button">
+                    <div class="fb-logo"><i class="fa fa-facebook"></i></div>
+                    <div class="login-button-text"><span>Login</span></div>
+                </div>
+
+                <p class="login-message">Login with Email</p>
+                <form name="emailCreateAccountForm">
+                    <input ng-model="mainCtrl.user.email" type="text"/>
+                    <input ng-model="mainCtrl.user.password" type="password"/>
+                    <div ng-click="mainCtrl.emailLogin()" class="email-login-button">
+                        <div class="email-logo"><i class="fa fa-envelope"></i></div>
+                        <div class="login-button-text"><span>Email Login</span></div>
+                    </div>
+                </form>
             </div>
 
         </div>

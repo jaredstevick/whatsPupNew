@@ -12,13 +12,13 @@
 
     .login-form {
         margin: 10% auto;
-        width: 30%;;
+        width: 22em;
         padding: 30px;
         background: rgba(0, 0, 0, 0.4);
         text-align: center;
-        color: #FFF;
 
         .logo {
+            color: #FFF;
             margin-bottom: 2%;
             border-top: 2px solid #fff;
             border-bottom: 2px solid #fff;
@@ -35,7 +35,8 @@
             line-height: 3ex;
         }
 
-        .login-button {
+        .fb-login-button {
+            color: #FFF;
             margin-top: 2.5ex;
             width: 100%;
             background-color: cornflowerblue;
@@ -59,7 +60,31 @@
                 }
             }
         }
-
+        .email-login-button {
+            color: #FFF;
+            margin-top: 2.5ex;
+            width: 100%;
+            background-color: darkgray;
+            height: 3em;
+            .email-logo {
+                background-color: darkblue;
+                float: left;
+                height: 100%;
+                width: 20%;
+                i {
+                    margin-top: 15%;
+                    font-size: 2em;
+                }
+            }
+            .login-button-text {
+                margin-top: 40px;
+                span {
+                    font-size: 2em;
+                    font-weight: 300;
+                    margin-left: -10px;
+                }
+            }
+        }
     }
 
 }

@@ -10,7 +10,7 @@ function routeConfig($stateProvider) {
       url: '/',
       templateUrl: mainTpl,
       controller: require('./main.controller'),
-      controllerAs: 'main'
+      controllerAs: 'mainCtrl'
     });
 
 }
