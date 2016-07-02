@@ -31,14 +31,14 @@ class AuthService {
             let errorMessage = error.message;
             let email = error.email;
             let credential = error.credential;
-            console.log('Error on facebook sign-in', errorCode, errorMessage, email, credential);
+            console.log('AuthService | fbLogin() | Error on facebook sign-in', errorCode, errorMessage, email, credential);
         });
     }
 
     //email login
     createEmailLogin(newUserEmail, newUserPassword) {
         firebase.auth().createUserWithEmailAndPassword(newUserEmail, newUserPassword).then((result) => {
-            console.log('Email Account Creation Successful', result);
+            console.log('AuthService | createEmailLogin() | Email Account Creation Successful', result);
             let userId = result.uid;
             console.log('uid', result.uid);
             this.DatabaseService.createNewUser(userId, newUserEmail, newUserPassword);
@@ -46,21 +46,21 @@ class AuthService {
         }).catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log('email:', newUserEmail, 'password:', newUserPassword);
-            console.log('Email Account Creation Error:', errorCode, errorMessage);
+            console.log('AuthService | createEmailLogin() | email:', newUserEmail, 'password:', newUserPassword);
+            console.log('AuthService | createEmailLogin() | Email Account Creation Error:', errorCode, errorMessage);
         });
     }
 
     //create new email user login
     emailLogin(userEmail, userPassword) {
         firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).then((result) => {
-            console.log('Email Login Successful');
+            console.log('AuthService | emailLogin() | Email Login Successful');
             this.$state.go('clients');
             this.getUser();
         }).catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log('Email Login Error', errorCode, errorMessage);
+            console.log('AuthService | emailLogin() | Email Login Error', errorCode, errorMessage);
         });
     }
 
@@ -70,20 +70,20 @@ class AuthService {
         if (user) {
             let userId = user.uid
             let userEmail = user.email
-            console.log('Signed in user:', user);
+            console.log('AuthService | getUser() | Signed in user:', user);
             this.DatabaseService.checkForNewUser(userId, userEmail);
         } else {
-            console.log('No user signed in');
+            console.log('AuthService | getUser() | No user signed in');
         }
     }
 
     //logout
     logout() {
         firebase.auth().signOut().then(() => {
-            console.log('Log out succesful');
+            console.log('AuthService | logout() | Log out succesful');
             this.$state.go('main');
         }).catch((error) => {
-            console.log('Error logging out', error);
+            console.log('AuthService | logout() | Error logging out', error);
         });
     }
 

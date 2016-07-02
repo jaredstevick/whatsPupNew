@@ -19,7 +19,7 @@ class DatabaseService {
         let ref = firebase.database().ref('users/' + userId);
         ref.once('value').then((snapshot) => {
             let a = snapshot.exists();
-            console.log('a isExistingUser', a);
+            console.log('DatabaseService | checkForNewUser() | isExistingUser', a);
             if (!a) {
                 this.createNewUser(userId, userEmail);
             }
