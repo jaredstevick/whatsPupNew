@@ -14,7 +14,6 @@ class MainController {
 
     fbLogin() {
         this.AuthService.fbLogin();
-            // .then(this.state.go('clients'));
     }
 
     createEmailLogin() {
