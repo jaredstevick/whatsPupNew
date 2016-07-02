@@ -1,14 +1,14 @@
 'use strict';
-  const firebase = require("firebase/app");
-  require("firebase/auth");
-  // require("firebase/database");
-  // require("firebase/storage");
+const firebase = require("firebase/app");
+require("firebase/auth");
 
 class AuthService {
     /*@ngInject*/
     constructor($state, DatabaseService) {
         this.$state = $state;
         this.DatabaseService = DatabaseService;
+
+        //FIXME: firebase config. move this to config file
         let config = {
             apiKey: "AIzaSyD-HLyjS9cTBFNnXQVq0dn5vCF0LI3jJlQ",
             authDomain: "whatspup1.firebaseapp.com",
@@ -16,10 +16,9 @@ class AuthService {
             storageBucket: "",
         };
         firebase.initializeApp(config);
-        // let database = firebase.database();
-
     }
 
+    //facebook login/create new authorized if they don't exist
     fbLogin() {
         let provider = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(provider).then((result) => {
@@ -28,17 +27,15 @@ class AuthService {
             this.getUser();
             this.$state.go('clients');
         }).catch((error) => {
-            // Handle Errors here.
             let errorCode = error.code;
             let errorMessage = error.message;
-            // The email of the user's account used.
             let email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
             let credential = error.credential;
             console.log('Error on facebook sign-in', errorCode, errorMessage, email, credential);
         });
     }
 
+    //email login
     createEmailLogin(newUserEmail, newUserPassword) {
         firebase.auth().createUserWithEmailAndPassword(newUserEmail, newUserPassword).then((result) => {
             console.log('Email Account Creation Successful', result);
@@ -47,27 +44,27 @@ class AuthService {
             this.DatabaseService.createNewUser(userId, newUserEmail, newUserPassword);
             this.$state.go('clients');
         }).catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            let errorCode = error.code;
+            let errorMessage = error.message;
             console.log('email:', newUserEmail, 'password:', newUserPassword);
             console.log('Email Account Creation Error:', errorCode, errorMessage);
         });
     }
 
+    //create new email user login
     emailLogin(userEmail, userPassword) {
         firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).then((result) => {
             console.log('Email Login Successful');
             this.$state.go('clients');
             this.getUser();
         }).catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            let errorCode = error.code;
+            let errorMessage = error.message;
             console.log('Email Login Error', errorCode, errorMessage);
         });
     }
 
+    //get the user info and check if user exists in database
     getUser() {
         let user = firebase.auth().currentUser;
         if (user) {
@@ -80,11 +77,11 @@ class AuthService {
         }
     }
 
+    //logout
     logout() {
         firebase.auth().signOut().then(() => {
             console.log('Log out succesful');
             this.$state.go('main');
-            //sign-out successful
         }).catch((error) => {
             console.log('Error logging out', error);
         });
