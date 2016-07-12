@@ -18,36 +18,32 @@ class AuthService {
         firebase.initializeApp(config);
     }
 
-    //facebook login/create new authorized if they don't exist
+    //facebook login
     fbLogin() {
         let provider = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(provider).then((result) => {
-            let userId = result.uid;
-            let userEmail = result.email
-            this.getUser();
             this.$state.go('clients');
+            console.log('AuthService | fbLogin() | Success', result);
         }).catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
             let email = error.email;
             let credential = error.credential;
-            console.log('AuthService | fbLogin() | Error on facebook sign-in', errorCode, errorMessage, email, credential);
+            console.log('AuthService | fbLogin() | Error on facebook sign-in ', errorCode, errorMessage, email, credential);
         });
     }
 
     //email login
     createEmailLogin(newUserEmail, newUserPassword) {
         firebase.auth().createUserWithEmailAndPassword(newUserEmail, newUserPassword).then((result) => {
-            console.log('AuthService | createEmailLogin() | Email Account Creation Successful', result);
+            console.log('AuthService | createEmailLogin() | Email Account Creation Successful ', result);
             let userId = result.uid;
-            console.log('uid', result.uid);
             this.DatabaseService.createNewUser(userId, newUserEmail, newUserPassword);
             this.$state.go('clients');
         }).catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log('AuthService | createEmailLogin() | email:', newUserEmail, 'password:', newUserPassword);
-            console.log('AuthService | createEmailLogin() | Email Account Creation Error:', errorCode, errorMessage);
+            console.log('AuthService | createEmailLogin() | Email Account Creation Error: ', errorCode, errorMessage);
         });
     }
 
@@ -56,26 +52,26 @@ class AuthService {
         firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).then((result) => {
             console.log('AuthService | emailLogin() | Email Login Successful');
             this.$state.go('clients');
-            this.getUser();
         }).catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log('AuthService | emailLogin() | Email Login Error', errorCode, errorMessage);
+            console.log('AuthService | emailLogin() | Email Login Error ', errorCode, errorMessage);
         });
     }
 
-    //get the user info and check if user exists in database
-    getUser() {
-        let user = firebase.auth().currentUser;
-        if (user) {
-            let userId = user.uid
-            let userEmail = user.email
-            console.log('AuthService | getUser() | Signed in user:', user);
-            this.DatabaseService.checkForNewUser(userId, userEmail);
-        } else {
-            console.log('AuthService | getUser() | No user signed in');
-        }
-    }
+    // getUser() {
+    //     firebase.auth().onAuthStateChanged((user) => {
+    //         if (user) {
+    //             console.log('AuthService | getUser() | Signed in user: ', user);
+    //             const userId = user.uid
+    //             let userEmail = user.email
+    //             this.DatabaseService.checkForNewUser(userId, userEmail);
+    //         } else {
+    //             console.log('AuthService | getUser() | No user signed in');
+    //         }
+    //     });
+    // }
+
 
     //logout
     logout() {
@@ -83,7 +79,7 @@ class AuthService {
             console.log('AuthService | logout() | Log out succesful');
             this.$state.go('main');
         }).catch((error) => {
-            console.log('AuthService | logout() | Error logging out', error);
+            console.log('AuthService | logout() | Error logging out ', error);
         });
     }
 

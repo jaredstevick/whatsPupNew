@@ -1,112 +1,71 @@
-<div class="container-fluid backgroundctn cd-fixed-bg cd-bg-1 ">
-    
-    <form name="formHorizontal" class="formHorizontal" ng-submit="formHorizontal.$valid && client.addClient(client.newClient)" novalidate>
+<div class="clients container">
 
+    <button ng-click="clientsCtrl.logout()">Logout</button>
+    
+    <form name="formHorizontal" class="formHorizontal" ng-submit="formHorizontal.$valid" novalidate>
         <fieldset class="fieldsettings">
             <div class="row ">
-                <a href=" " ng-show="show " ng-click="show=! show " class="col-md-11 pull-right ">
-                    <button id="Cancel" name="Cancel " class="btn btn-danger btn-lg pull-right ">cancel</button>
+                <a href=" " class="col-md-11 pull-right ">
+                    <button id="Cancel" name="Cancel " class="btn btn-danger btn-lg pull-right">cancel</button>
                 </a>
                 <a href=" ">
-                    <button ng-hide="show " ng-click="show=! show " class="btn btn-lg btn-success newClient pull-right ">add client</button>
+                    <button class="btn btn-lg btn-success newClient pull-right">add client</button>
                 </a>
             </div>
 
-            <div class="test" ng-show="show">
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label class="control-label" for="name">Name <small style="color:#d9534f">(Required)</small></label>
-                        <div class="col-md-">
-                            <input ng-model="client.newClient.name" id="name" name="name" type="text" placeholder="Full Name" class="form-control input-md ng-pristine ng-invalid" required>
-                        </div>
-                    </div>
+            <div class="form-group">
+                <label class="control-label" for="name">First Name <span class="required">(Required)</span></label>
+                <input ng-model="clientsCtrl.client.firstName" id="firstName" name="firstName" type="text" placeholder="First Name" class="form-control" required>
 
-                    <div class="form-group">
-                        <label class="control-label" for="pet">Pet's Name(s)</label>
-                        <div class="">
-                            <input ng-model="client.newClient.pet" id="pet" name="pet" type="text" placeholder="Pet's Name(s)" class="form-control input-md">
-                        </div>
-                    </div>
+               <label class="control-label" for="name">Last Name <span class="required">(Required)</span></label>
+                <input ng-model="clientsCtrl.client.lastName" id="lastName" name="lastName" type="text" placeholder="Last Name" class="form-control" required>
 
-                    <div class="form-group">
-                        <label class="control-label" for="email">Email <small style="color:#d9534f">(Required)</small></label>
-                        <div class="">
-                            <input ng-model="client.newClient.email" id="email" name="email" type="email" placeholder="email@example.com" class="form-control input-md" required>
-                        </div>
-                    </div>
+                <label class="control-label" for="pet">Pet's Name(s)</label>
+                <input ng-model="clientsCtrl.client.pets" id="pet" name="pet" type="text" placeholder="Pet's Name(s)" class="form-control" required>
 
-                    <div class="form-group">
-                        <label class="control-label" for="phone">Phone Number</label>
-                        <div class="">
-                            <input ng-model="client.newClient.phone" id="phone" name="phone" type="text" placeholder="555-867-5309" class="form-control input-md">
-                        </div>
-                    </div>
-                </div>
+                <label class="control-label" for="email">Email <span class="required">(Required)</span></label>
+                <input ng-model="clientsCtrl.client.email" id="email" name="email" type="email" placeholder="email@example.com" class="form-control" required>
 
+                <label class="control-label" for="phone">Phone Number</label>
+                <input ng-model="clientsCtrl.client.phone" id="phone" name="phone" type="text" placeholder="555-867-5309" class="form-control">
 
+                <label class="control-label" for="address">Street Address</label>
+                <input ng-model="clientsCtrl.client.address" id="address" name="address" type="text" placeholder="123 Street Name" class="form-control">
 
-                <div class="col-md-2">
-                </div>
+                <label class="control-label" for="city">City</label>
+                <input ng-model="clientsCtrl.client.city" id="city" name="city" type="text" placeholder="City Name" class="form-control">
 
+                <label class="control-label" for="state">State</label>
+                <input ng-model="clientsCtrl.client.state" id="state" name="state" type="text" placeholder="State" class="form-control">
 
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label class="control-label" for="address">Street Address</label>
-                        <div class="">
-                            <input ng-model="client.newClient.street" id="address" name="address" type="text" placeholder="123 Street Name" class="form-control input-md">
-                        </div>
-                    </div>
+                <label class="control-label" for="zip">Zip Code</label>
+                <input ng-model="clientsCtrl.client.zip" id="zip" name="zip" type="text" placeholder="Zip Code" class="form-control">
 
-                    <div class="form-group">
-                        <label class="control-label" for="city">City</label>
-                        <div class="">
-                            <input ng-model="client.newClient.city" id="city" name="city" type="text" placeholder="City Name" class="form-control input-md">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label" for="state">State</label>
-                        <div class="">
-                            <input ng-model="client.newClient.state" id="state" name="state" type="text" placeholder="State" class="form-control input-md">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label" for="zip">Zip Code</label>
-                        <div class="">
-                            <input ng-model="client.newClient.zip" id="zip" name="zip" type="text" placeholder="Zip Code" class="form-control input-md">
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <div class="addclient-submitbtn">
-                        <button ng-click="show = !show" id="Submit" name="Submit" class="btn btn-primary btn-lg">submit</button>
-                    </div>
-                </div>
+                <button ng-click="clientsCtrl.addClient()" id="Submit" name="Submit" class="btn btn-primary btn-lg">submit</button>
             </div>
         </fieldset>
     </form>
+    <pre>{{clientsCtrl.client | json}}</pre>
 
-    <button ng-click="clientsCtrl.logout()">Logout</button>
 
-    <div class="clientscontainer cd-fixed-bg cd-bg-1 ">
+    <div class="clients-container">
+        <span class="clients-title">Clients</span>
         <hr>
-        <span class="clientlist"><h1>Clients</h1></span>
-        <hr>
-        <div ng-repeat="clients in client.obj" class=" col-md-6 cd-fixed-bg cd-bg-1">
-            <div class="cd-bg-1 newclienteven">
-                <div class="cd-scrolling-bg cd-color-2">
-                    <p class="clientname">{{ clients.name }} {{clients.firstName}} {{clients.lastName}}</p>
-                    <p>Pet: {{ clients.pet }}</p>
-                    <p class="clientAtag">Phone:<a class="clientAtag" href="tel: {{ clients.phone }}">{{clients.phone}}</a></p>
-                    <p class="clientAtag">E-mail:<a class="clientAtag" href="mailto: {{clients.email}}"> {{ clients.email }}</a></p>
-                    <p class="clientAtag-address">Address:<a class="clientAtag" href="http://maps.google.com/?q={{ clients.street }} {{ clients.city }} {{clients.state}} {{clients.zip }}">{{ clients.street }} {{ clients.city }} {{clients.state}} {{clients.zip }}</a></p>
-                    <a ui-sref="newvisit({user: client.user.$id, clientId: clients.$id}) " class="btn btn-md btn-info newvisitbtn">new visit</a>
-                    <a ng-click="client.deleteClient(clients) " class="btn btn-md btn-danger deletebtn">delete</a>
+        <div class="no-clients" ng-if="clientsCtrl.clients.length === 0">
+            <span>You haven't added any clients yet</span>
+        </div>
 
-                </div>
+        <div ng-repeat="client in clientsCtrl.clientList track by client.id" class="clients-list">
+            <div class="client-card">
+                {{client.id}}
+                <p class="client-name">{{client.firstName}} {{client.lastName}}</p>
+                <p class="client-pets">Pets: {{client.pets}}</li>
+                <p class="client-phone">Phone:<a href="tel: {{ client.phone }}"> {{client.phone}}</a></p>
+                <p class="client-email">E-mail:<a href="mailto: {{client.email}}"> {{ client.email }}</a></p>
+                <p class="client-address">Address:<a target="blank" href="http://maps.google.com/?q={{ client.street }} {{ client.city }} {{client.state}} {{client.zip }}"> {{ client.address }}, {{ client.city }} {{client.state}} {{client.zip }}</a></p>
+                <a ui-sref="newvisit({user: client.user.$id, clientId: client.$id}) " class="btn btn-md btn-success new-client-visit-buttpn">new visit</a>
+                <a ng-click="client.editClient(client) " class="btn btn-md btn-info edit-client-button">edit</a>
+                <a ng-click="client.deleteClient(client) " class="btn btn-md btn-danger delete-client-button">delete</a>
             </div>
         </div>
     </div>
